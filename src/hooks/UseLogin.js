@@ -1,0 +1,51 @@
+import {  useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+function useLogin() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [user,setUser] = useState({});
+    const navigate = useNavigate();
+
+    async function handleSubmitLogin(e){
+        e.preventDefault();
+          try {
+            const response = await fetch("http://localhost:5000/login", {
+              method: "POST",
+              body: JSON.stringify({
+                email,
+                password
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            });
+            const data = await response.json();
+            setUser(data);
+            // setItem('user', JSON.stringify(data));
+            console.log(data, "data");
+            if(data.role === 'admin'){
+                console.log(user,'d');
+                navigate('/sidebar');
+              }else{
+                navigate('/')
+              }
+          } catch (err) {
+            console.log(err);
+          }
+          setEmail('');
+          setPassword('');
+        }
+        return {
+            email,
+            setEmail,
+            password,
+            setPassword,
+            handleSubmitLogin,
+            user
+        }
+}
+
+export default useLogin
+
