@@ -23,7 +23,7 @@ function useLogin() {
             });
             const data = await response.json();
             setUser(data);
-            // setItem('user', JSON.stringify(data));
+            localStorage.setItem('token', data.jwt);
             console.log(data, "data");
             if(data.role === 'admin'){
                 console.log(user,'d');

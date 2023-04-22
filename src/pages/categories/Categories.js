@@ -3,13 +3,9 @@ import "./categories.css";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from 'react-router-dom';
 import { useState , useEffect} from 'react';
+import EditIcon from '@mui/icons-material/Edit';
 
-// const rows = [
-//     { id: 1, name: 'dresses' },
-//     { id: 2, name: 'Shoes'},
-//     { id: 3, name: 'Bags'},
-  
-//   ];
+
 export default function DataTable() {
   const [categories, setCategories] = useState([])
 
@@ -19,14 +15,6 @@ export default function DataTable() {
       .then(res=>res.json())
       .then(data=>setCategories(data))
   }, [])
-
-  // const [data, setData] = useState([]);
-
-  const handleDelete = (categoryId) => {
-    setCategories((prevCategories) =>
-      prevCategories.filter((category) => category.id !== categoryId)
-    );
-  };
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -38,15 +26,37 @@ const columns = [
     renderCell: (params) => {
       return (
         <>
-          
-          <DeleteOutline
+         <Link to={`/updatecategory/${params.id}`}>
+          <EditIcon
+          className="userListDelete"
+         />
+</Link>
+           <DeleteOutline
   className='delete'
-  onClick={() => handleDelete(params.row.id)}
+  onClick={() => submitDeleteCategory(params.id)} 
 />
-        </>
+  </>
       );
       }}
 ];
+const submitDeleteCategory = async (id) => {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await fetch(`http://localhost:5000/category/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "Authorization": token
+      }
+    })
+    const data = await response.json()
+    console.log(data, 'data')
+    // Filter the deleted product from the products state
+    setCategories((prevCategories) => prevCategories.filter((category) => category.id !== id));
+  } catch(err){
+    console.log(err)
+  }
+};
 return (
     <div style={{ height: 400, width: '100%' }}>
          <h1 className="productTitle">Categories</h1>
@@ -54,7 +64,7 @@ return (
           <button className="productAddButton">Create</button>
         </Link>
         <DataGrid
-        rows={categories} // Use `rows` prop instead of mapping in JSX
+        rows={categories} 
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

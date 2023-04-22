@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import Auth from './Auth';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
@@ -8,6 +8,8 @@ import UserList from './pages/userList/UserList';
 import Product from './pages/product/Product'
 import Categories from './pages/categories/Categories'
 import NewCategory from './pages/newcategory/NewCategory';
+import UpdateProduct from './pages/product/UpdateProduct';
+import UpdateCategory from './pages/categories/UpdateCategory';
 
 function App() {
   return (
@@ -21,16 +23,14 @@ function App() {
     <Route path='/prod' element={<NewProduct/>} />
     <Route path='/categories' element={<Categories/>} />
     <Route path='/category' element={<NewCategory/>} />
-    
-    
-
-
-  </Routes>
-    
-
-  
+    <Route path='/updateprod/:id' element={<UpdateProduct/>} />
+    <Route path='/updatecategory/:id' element={<UpdateCategory/>} />
+    </Routes>
     </div>
    );
 }
 
 export default App;
+
+  
+

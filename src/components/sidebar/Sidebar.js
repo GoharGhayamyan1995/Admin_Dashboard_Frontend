@@ -20,7 +20,7 @@ import {
 
 export default function Topbar() {
   return (
-    <div>
+  <div>
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
@@ -39,11 +39,13 @@ export default function Topbar() {
             <Settings />
           </div>
           <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
-        </div>
       </div>
-    </div>
+  </div>
+</div>
+    
+   
 
-<div className="sidebar">
+<div  style={{width:200}} className="sidebar">
 <div className="sidebarWrapper">
   <div className="sidebarMenu">
     <h3 className="sidebarTitle">Dashboard</h3>
@@ -129,8 +131,12 @@ export default function Topbar() {
       </li>
     </ul>
   </div>
+  </div>
+ </div>
+  
 </div>
-</div>
-</div>
+
+
 );
 }
+
