@@ -10,6 +10,7 @@ import Categories from './pages/categories/Categories'
 import NewCategory from './pages/newcategory/NewCategory';
 import UpdateProduct from './pages/product/UpdateProduct';
 import UpdateCategory from './pages/categories/UpdateCategory';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
   <Routes>
     <Route path='/' element={<Auth/>} /> 
   
-    <Route path='/sidebar' element={<Sidebar/>} />
+    <Route path='/admin' element={<ProtectedRoute><Sidebar/></ProtectedRoute>} />
     <Route path='/products' element={<Product/>} />
     <Route path='/userlist' element={<UserList/>} />
     <Route path='/prod' element={<NewProduct/>} />

@@ -16,19 +16,18 @@ export default function DataTable() {
       .then(data=>setProducts(data))
   }, [])
   const navigate = useNavigate();
-
-  // const [data, setData] = useState([]);
-  // const handleDelete = (productId) => {
-  //   setProducts((prevProducts) =>
-  //     prevProducts.filter((product) => product.id !== productId)
-  //   );
-  // };
-
-  const columns = [
+ const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'name', width: 130 },
     { field: 'price', headerName: 'price', width: 130 },
-    { field: 'image', headerName: 'image', width: 130 },
+    {
+      field: 'image',
+      headerName: 'Image',
+      width: 150,
+      renderCell: (params) => (
+        <img src={params.value} alt="Product" style={{ width: '100%' }} />
+      ),
+    }, 
     {
       field: "action",
       headerName: "Action",
@@ -73,9 +72,7 @@ export default function DataTable() {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <h1 className="productTitle">Products</h1>
-      <Link to="/prod">
-        <button className="productAddButton">Create</button>
-      </Link>
+     
       <DataGrid
         rows={products} 
         columns={columns}
@@ -83,6 +80,9 @@ export default function DataTable() {
         rowsPerPageOptions={[5]}
         checkboxSelection
       />
+       <Link to="/prod">
+        <button className="productAddButton">Create</button>
+      </Link>
     </div>
   );
 }

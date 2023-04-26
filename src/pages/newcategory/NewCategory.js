@@ -44,7 +44,7 @@ export default function NewCategory() {
             placeholder="dresses" 
           />
         </div>
-        <button className="addProductButton" onClick={submitCreateCategory}>Create</button>
+        <button className="productAddButton" onClick={submitCreateCategory}>Create</button>
       </form>
     </div>
   );

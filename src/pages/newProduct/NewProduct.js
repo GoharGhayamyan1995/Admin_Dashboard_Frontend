@@ -38,9 +38,14 @@ export default function NewProduct() {
     setCategoryId('')
   }
 
-  function handleImageChange(e) {
-    setImage(e.target.files[0]);
-  }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div className="newProduct">

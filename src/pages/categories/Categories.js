@@ -28,11 +28,10 @@ const columns = [
         <>
          <Link to={`/updatecategory/${params.id}`}>
           <EditIcon
-          className="userListDelete"
+          className="edit"
          />
 </Link>
            <DeleteOutline
-  className='delete'
   onClick={() => submitDeleteCategory(params.id)} 
 />
   </>

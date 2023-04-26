@@ -27,7 +27,7 @@ function useLogin() {
             console.log(data, "data");
             if(data.role === 'admin'){
                 console.log(user,'d');
-                navigate('/sidebar');
+                navigate('/admin');
               }else{
                 navigate('/')
               }

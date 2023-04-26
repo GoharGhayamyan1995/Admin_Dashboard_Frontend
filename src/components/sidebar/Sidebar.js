@@ -1,6 +1,7 @@
 import React from "react";
 import "./sidebar.css";
 import { NotificationsNone, Language, Settings } from "@mui/icons-material";
+import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import {
     LineStyle,
     Timeline,
@@ -16,9 +17,14 @@ import {
     Report,
   } from "@mui/icons-material";
   import CategoryIcon from '@mui/icons-material/Category';
-  import { Link } from "react-router-dom";
+  import { Link, useNavigate } from "react-router-dom";
 
 export default function Topbar() {
+  const navigate = useNavigate()
+  const handleLogOut = () =>{
+    localStorage.removeItem('token')
+      navigate('/')
+  }
   return (
   <div>
     <div className="topbar">
@@ -39,6 +45,7 @@ export default function Topbar() {
             <Settings />
           </div>
           <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
+          < ExitToAppTwoToneIcon className="logout" onClick={handleLogOut}/>
       </div>
   </div>
 </div>
