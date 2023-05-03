@@ -11,3 +11,8 @@
 .edit{
     color: black;
 }
+.productitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

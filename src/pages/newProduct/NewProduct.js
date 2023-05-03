@@ -1,6 +1,7 @@
 import "./newProduct.css";
 
 import { useState } from "react";
+import {Link} from "react-router-dom"
 
 export default function NewProduct() {
 
@@ -69,6 +70,7 @@ export default function NewProduct() {
         </div>
         <button className="addProductButton" onClick={submitCreateProduct}>Create</button>
       </form>
+      <Link to="/products"><p>go to products</p></Link>
     </div>
   );
 }

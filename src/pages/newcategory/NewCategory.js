@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import {Link} from "react-router-dom"
 
 export default function NewCategory() {
 
@@ -46,6 +47,7 @@ export default function NewCategory() {
         </div>
         <button className="productAddButton" onClick={submitCreateCategory}>Create</button>
       </form>
+      <Link to="/categories"><p>go to categories</p></Link>
     </div>
   );
 }

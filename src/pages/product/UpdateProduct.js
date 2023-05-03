@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function UpdateProduct() {
   const navigate = useNavigate();
@@ -117,6 +117,7 @@ function UpdateProduct() {
           Update
         </button>
       </form>
+      <Link to="/products"><p>go to products</p></Link>
     </div>
   );
   }

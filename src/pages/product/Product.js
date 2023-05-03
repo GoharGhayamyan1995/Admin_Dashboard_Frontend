@@ -20,6 +20,7 @@ export default function DataTable() {
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'name', width: 130 },
     { field: 'price', headerName: 'price', width: 130 },
+    { field: 'categoryId', headerName: 'categoryId', width: 130 },
     {
       field: 'image',
       headerName: 'Image',
@@ -71,7 +72,12 @@ export default function DataTable() {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
+       <div className="productitle">
       <h1 className="productTitle">Products</h1>
+      <Link to="/prod">
+        <button className="productAddButton">Create</button>
+      </Link>
+      </div>
      
       <DataGrid
         rows={products} 
@@ -80,9 +86,10 @@ export default function DataTable() {
         rowsPerPageOptions={[5]}
         checkboxSelection
       />
-       <Link to="/prod">
-        <button className="productAddButton">Create</button>
-      </Link>
+      
     </div>
   );
 }
+
+
+

@@ -11,3 +11,8 @@
   .userListDelete{
     color:black
   }
+  .productitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }

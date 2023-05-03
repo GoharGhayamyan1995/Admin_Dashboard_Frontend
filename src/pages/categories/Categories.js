@@ -57,11 +57,13 @@ const submitDeleteCategory = async (id) => {
   }
 };
 return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '98%' }}>
+      <div className="productitle">
          <h1 className="productTitle">Categories</h1>
         <Link to="/category">
           <button className="productAddButton">Create</button>
         </Link>
+        </div>
         <DataGrid
         rows={categories} 
         columns={columns}
