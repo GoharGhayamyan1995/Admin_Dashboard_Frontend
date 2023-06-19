@@ -11,7 +11,7 @@ function useLogin() {
     async function handleSubmitLogin(e){
         e.preventDefault();
           try {
-            const response = await fetch("http://localhost:5000/login", {
+            const response = await fetch("http://localhost:3002/login", {
               method: "POST",
               body: JSON.stringify({
                 email,

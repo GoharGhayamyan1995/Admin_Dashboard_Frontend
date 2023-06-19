@@ -8,27 +8,50 @@ import { useState , useEffect} from 'react';
 
 export default function DataTable() {
   const [products, setProducts] = useState([])
+  
 
   // Add empty dependency array to useEffect to prevent infinite loop
   useEffect(()=>{
-      fetch('http://localhost:5000/product')
+      fetch('http://localhost:3002/all')
       .then(res=>res.json())
-      .then(data=>setProducts(data))
+      .then(data=>setProducts(data.products))
   }, [])
+
+  const [categories, setCategories] = useState([]);
+
+useEffect(() => {
+  fetch('http://localhost:3002/category') // Assuming this endpoint returns an array of categories
+    .then(res => res.json())
+    .then(data => setCategories(data));
+}, []);
   const navigate = useNavigate();
+
  const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'name', width: 130 },
     { field: 'price', headerName: 'price', width: 130 },
-    { field: 'categoryId', headerName: 'categoryId', width: 130 },
     {
       field: 'image',
       headerName: 'Image',
       width: 150,
       renderCell: (params) => (
-        <img src={params.value} alt="Product" style={{ width: '100%' }} />
+        <img src={`http://localhost:3002/${params.value}`} alt="Product" style={{ width: '100%' }} />
       ),
     }, 
+    { field: 'description', headerName: 'description', width: 130 },
+    { field: 'metal', headerName: 'metal', width: 130 },
+    { field: 'size', headerName: 'size', width: 130 },
+    { field: 'quantity', headerName: 'quantity', width: 130 },
+    {
+      field: 'categoryId',
+      headerName: 'Category',
+      width: 130,
+      renderCell: (params) => {
+        const categoryName = categories.find(category => category.id === params.value)?.name || '';
+        return <span>{categoryName}</span>;
+      },
+    },
+  
     {
       field: "action",
       headerName: "Action",
@@ -55,7 +78,7 @@ export default function DataTable() {
   const submitDeleteProduct = async (id) => {
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`http://localhost:5000/product/${id}`, {
+      const response = await fetch(`http://localhost:3002/delete/product/${id}`, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json; charset=UTF-8",

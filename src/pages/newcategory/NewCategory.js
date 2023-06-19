@@ -9,7 +9,7 @@ export default function NewCategory() {
     e.preventDefault()
     const token = localStorage.getItem('token')
     try{
-      const response = await fetch('http://localhost:5000/category', {
+      const response = await fetch('http://localhost:3002/category', {
         method: "POST",
         body: JSON.stringify({
          

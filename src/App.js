@@ -19,13 +19,13 @@ function App() {
     <Route path='/' element={<Auth/>} /> 
   
     <Route path='/admin' element={<ProtectedRoute><Sidebar/></ProtectedRoute>} />
-    <Route path='/products' element={<Product/>} />
-    <Route path='/userlist' element={<UserList/>} />
-    <Route path='/prod' element={<NewProduct/>} />
-    <Route path='/categories' element={<Categories/>} />
-    <Route path='/category' element={<NewCategory/>} />
-    <Route path='/updateprod/:id' element={<UpdateProduct/>} />
-    <Route path='/updatecategory/:id' element={<UpdateCategory/>} />
+    <Route path='/products' element={<ProtectedRoute><Product/></ProtectedRoute>} />
+    <Route path='/userlist' element={<ProtectedRoute><UserList/></ProtectedRoute>} />
+    <Route path='/prod' element={<ProtectedRoute><NewProduct/></ProtectedRoute>} />
+    <Route path='/categories' element={<ProtectedRoute><Categories/></ProtectedRoute>} />
+    <Route path='/category' element={<ProtectedRoute><NewCategory/></ProtectedRoute>} />
+    <Route path='/updateprod/:id' element={<ProtectedRoute><UpdateProduct/></ProtectedRoute>} />
+    <Route path='/updatecategory/:id' element={<ProtectedRoute><UpdateCategory/></ProtectedRoute>} />
     </Routes>
     </div>
    );

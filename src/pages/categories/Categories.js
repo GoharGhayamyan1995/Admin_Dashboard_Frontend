@@ -11,7 +11,7 @@ export default function DataTable() {
 
   // Add empty dependency array to useEffect to prevent infinite loop
   useEffect(()=>{
-      fetch('http://localhost:5000/category')
+      fetch('http://localhost:3002/category')
       .then(res=>res.json())
       .then(data=>setCategories(data))
   }, [])
@@ -41,7 +41,7 @@ const columns = [
 const submitDeleteCategory = async (id) => {
   const token = localStorage.getItem('token')
   try {
-    const response = await fetch(`http://localhost:5000/category/${id}`, {
+    const response = await fetch(`http://localhost:3002/category/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json; charset=UTF-8",

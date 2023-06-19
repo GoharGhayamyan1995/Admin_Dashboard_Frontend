@@ -1,25 +1,32 @@
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'name', headerName: 'name', width: 130 },
+  { field: 'first_name', headerName: 'first_name', width: 130 },
+  { field: 'last_name', headerName: 'last_name', width: 130 },
+  { field: 'city', headerName: 'city', width: 130 },
   { field: 'email', headerName: 'email', width: 130 },
 
 
 ];
 
-const rows = [
-  { id: 1, name: 'Snow', email: 'Jon.snow@mail.ru' },
-  { id: 2, name: 'Lannister', email: 'Cersei.carsei@mail.ru'},
-  { id: 3, name: 'Lannister', email: 'Jaime.jaime@mail.ru' },
 
-];
 
 export default function DataTable() {
+  const [users, setUsers] = useState([])
+
+  // Add empty dependency array to useEffect to prevent infinite loop
+  useEffect(()=>{
+      fetch('http://localhost:3002/users')
+      .then(res=>res.json())
+      .then(data=>setUsers(data))
+  }, [])
+
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={users}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

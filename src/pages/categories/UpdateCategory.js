@@ -14,7 +14,7 @@ export default function UpdateCategory() {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:5000/category/${id}`, {
+      const response = await fetch(`http://localhost:3002/category/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
           name,
@@ -42,7 +42,7 @@ export default function UpdateCategory() {
   useEffect(() => {
     const getCategory = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/category/${id}`);
+        const response = await fetch(`http://localhost:3002/category/${id}`);
         const data = await response.json();
         setCategory(data);
         setName(data.name);
