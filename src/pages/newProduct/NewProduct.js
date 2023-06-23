@@ -72,17 +72,19 @@ export default function NewProduct() {
         console.error(error);
       });
   }, []);
+  console.log(categories)
+  console.log(categoryId)
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm">
       <div className="addProductItem">
           <label>Name</label>
-          <input type="text" placeholder="dress" value={name} onChange={e => setName(e.target.value)} />
+          <input type="text"  value={name} onChange={e => setName(e.target.value)} />
         </div>
         <div className="addProductItem">
           <label>Price</label>
-          <input type="text" placeholder="123" value={price} onChange={e => setPrice(e.target.value)} />
+          <input type="text" value={price} onChange={e => setPrice(e.target.value)} />
         </div>
         <div className="addProductItem">
           <label>Image</label>
