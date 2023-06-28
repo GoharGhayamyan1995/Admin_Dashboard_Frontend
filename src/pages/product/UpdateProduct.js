@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function UpdateProduct() {
@@ -16,8 +16,7 @@ function UpdateProduct() {
 
 
 
-  
-  // const [product, setProduct] = useState(null);
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -26,11 +25,11 @@ function UpdateProduct() {
       setImage(reader.result);
     };
     reader.readAsDataURL(file);
- 
+
   };
 
   useEffect(() => {
-    fetch('http://localhost:3002/category') // Замените на URL вашего сервера для получения категорий
+    fetch('http://localhost:3002/category')
       .then(response => response.json())
       .then(data => {
         setCategories(data);
@@ -51,11 +50,8 @@ function UpdateProduct() {
         setSize(data.size);
         setDescription(data.description);
         setQuantity(data.quantity);
-        
-        // Fetch the category name based on the categoryId
-    //     const categoryResponse = await fetch(`http://localhost:3002/category/${data.categoryId}`);
-    //     const categoryData = await categoryResponse.json();
-    //     setCategoryName(categoryData.name);
+
+
       } catch (err) {
         console.log(err);
       }
@@ -82,39 +78,22 @@ function UpdateProduct() {
           'Content-type': 'application/json; charset=UTF-8',
           Authorization: token,
         },
-        
+
       });
       const data = await response.json();
       console.log(data, 'data');
-      navigate('/products'); // add this line to navigate to the 'products' route
+      navigate('/products');
     } catch (err) {
       console.log(err);
     }
-  
+
   };
-    // useEffect(() => {
-    //   const getProduct = async () => {
-    //     try {
-    //       const response = await fetch(`http://localhost:5000/product/${id}`);
-    //       const data = await response.json();
-    //       // setProduct(data);
-    //       setName(data.name);
-    //       setPrice(data.price);
-    //       setCategoryId(data.categoryId);
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   };
-  
-    //   getProduct();
-    // }, [id]);
-  
 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">Update Product</h1>
       <div className="addProductForm">
-       
+
         <div className="addProductItem">
           <label>Name</label>
           <input
@@ -132,70 +111,70 @@ function UpdateProduct() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
-           <div className="addProductItem">
-          <label>Image</label>
-          <input type="file" id="file"  onChange={handleImageChange} />
-        </div>
+          <div className="addProductItem">
+            <label>Image</label>
+            <input type="file" id="file" onChange={handleImageChange} />
+          </div>
         </div>
         <div className="addProductItem">
 
-        <label>Description</label>
+          <label>Description</label>
           <input
             type="text"
             placeholder="Product description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-                     </div>
-                     <div className="addProductItem">
+        </div>
+        <div className="addProductItem">
 
-               <label>Metal</label>
+          <label>Metal</label>
           <input
             type="text"
             placeholder="Product metal"
             value={metal}
             onChange={(e) => setMetal(e.target.value)}
           />
-          </div>
-          <div className="addProductItem">
+        </div>
+        <div className="addProductItem">
 
-               <label>Size</label>
+          <label>Size</label>
           <input
             type="text"
             placeholder="Product size"
             value={size}
             onChange={(e) => setSize(e.target.value)}
           />
-          </div>
-          <div className="addProductItem">
+        </div>
+        <div className="addProductItem">
 
-               <label>Quantity</label>
+          <label>Quantity</label>
           <input
             type="text"
             placeholder="Product quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
-          </div>
-          <div className="addProductItem">
-         <label>Category</label>
-         <select value={categoryId} onChange={e => setCategoryId(e.target.value)}>
-  <option value="">Select a category</option>
-  {categories.map(category => (
-    <option key={category.id} value={category.id}>
-      {category.name}
-    </option>
-  ))}
-</select>
-</div>
-        <button className="addProductButton" onClick={()=>submitUpdateProduct(id)}>
+        </div>
+        <div className="addProductItem">
+          <label>Category</label>
+          <select value={categoryId} onChange={e => setCategoryId(e.target.value)}>
+            <option value="">Select a category</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button className="addProductButton" onClick={() => submitUpdateProduct(id)}>
           Update
         </button>
       </div>
       <Link to="/products"><p>go to products</p></Link>
     </div>
   );
-  }
+}
 
 export default UpdateProduct;
 

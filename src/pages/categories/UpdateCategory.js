@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 
@@ -8,6 +8,7 @@ export default function UpdateCategory() {
   const [category, setCategory] = useState('');
   const [error, setError] = useState(null);
   const { id } = useParams();
+
 
   const submitUpdateCategories = async (e) => {
     e.preventDefault();

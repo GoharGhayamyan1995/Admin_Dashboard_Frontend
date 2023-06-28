@@ -16,7 +16,6 @@ const columns = [
 export default function DataTable() {
   const [users, setUsers] = useState([])
 
-  // Add empty dependency array to useEffect to prevent infinite loop
   useEffect(()=>{
       fetch('http://localhost:3002/users')
       .then(res=>res.json())
